@@ -1,6 +1,6 @@
 #mapContainer {
   height: 750px;
-  width: 500px;
+  width: 750px;
   padding-top: 5px;
 }
 
@@ -15,20 +15,4 @@ body {
 
 .centered {
   text-align: center;
-}
-
-.large {
-  color: #FF0000
-}
-
-.medium {
-  color: #FFFF00
-}
-
-.small {
-  color: #0000FF
-}
-
-.other {
-  color: #ccc
 }
