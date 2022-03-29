@@ -27,15 +27,15 @@ var airport_data= $.getJSON('/data/all-airport-data.json', function(airport_data
 //     .addTo(map)
 // })
 
+var begining_airport = ''
+
 $("#start_airport_btn").click(function(){
-  $('#start_airport').change(function(){
-    var start_airport = $(this).val();
-    console.log(start_airport)
-  })
+  begining_airport = $(this).val();
+  console.log(begining_airport)
+})
   // var start_marker = new mapboxgl.Marker()
   //   .setLngLat(start_coord)
   //   .addTo(map);
-});
 
 var createGeoJSONCircle = function(center, radiusInKm, points) {
   if(!points) points = 64;
@@ -99,7 +99,7 @@ var createGeoJSONCircle = function(center, radiusInKm, points) {
 //       });
 //     }
 //   );
-  
+
 //   map.addSource("polygon", createGeoJSONCircle([-93.6248586, 41.58527859], 500));
 
 //   map.addLayer({
