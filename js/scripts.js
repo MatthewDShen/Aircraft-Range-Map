@@ -19,6 +19,7 @@ var map = new mapboxgl.Map({
 });
 
 var airport_data= $.getJSON('/data/all-airport-data.json', function(airport_data) {
+  console.log(airport_data.'Loc Id')
 });
 
 // airport_data.forEach(function(airportRow){
@@ -26,13 +27,13 @@ var airport_data= $.getJSON('/data/all-airport-data.json', function(airport_data
 //     .setLngLat([airportRow.Longitude,airportRow.Latitude])
 //     .addTo(map)
 // })
+$(document).ready(function () {
+  $("#start_airport_btn").click(function () {
+      var inputString = $("#start_airport").val();
+      alert(inputString);
+  });
+});
 
-var begining_airport = ''
-
-$("#start_airport_btn").click(function(){
-  begining_airport = $(this).val();
-  console.log(begining_airport)
-})
   // var start_marker = new mapboxgl.Marker()
   //   .setLngLat(start_coord)
   //   .addTo(map);
