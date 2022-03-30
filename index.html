@@ -8,22 +8,115 @@
   <title>Aircraft Range Map</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="css/styles.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <label>Aircraft Range:</label>
-  <input type="number" id="aircraft_rng_input">
-  <button class="button" id ="aircraft_rng_btn">Set Aircraft Range</button>
-
-
-  <div id='mapContainer'>
-  <!-- this is where mapboxGL will insert the map -->
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <pre id="coordinates" class="coordinates"></pre>
+  <!-- Main content container -->
+  <div id='parent-container'>
+    <!-- Navbar -->
+    <!-- Source: https://getbootstrap.com/docs/4.0/components/navs/ -->
+    <nav class="nav">
+      <a class="nav-link active" href="#">Home</a>
+      <a class="nav-link" href="#">Learn More</a>
+    </nav>
+    <!-- Navbar -->
+    <div class='content-area'>
+      <div class='sidebar'>
+        <div id='sidebar-content-area'>
+          <div class='sidebar-title'>
+            <h3><strong>Housing Choice Voucher Households and Flood Risk</strong></h3>
+          </div>
+          <div class='stat-table-container'>
+            <div id='stat-table' class='table table-bordered table-hover'>
+              <i>Select a neighborhood to learn more</i>
+            </div>
+          </div>
+          <div class='info-blurb'>
+            <p>Select your starting airport</p>
+        
+            <select id="sel">
+              <option value="">-- Select --</option>
+            </select>
+          </div>
+          <div class='info-blurb'>
+            <p>Select your aircraft range</p>
+            
+            <input type="number" ></input>
+          </div>
+          <div class="button-container">
+            <button type="button" class="btn btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">
+              About this data
+            </button>
+          </div>
+      </div>
+    </div>
+    <div id='mapContainer'>
+      <!-- mapboxGL map inserted here-->
+        <div id='number-reported-legend' class='legend'>
+          <!-- Source: https://docs.mapbox.com/mapbox-gl-js/example/updating-choropleth/ -->
+          <h5>Number of Voucher Households (Reported)</h5>
+          <div><span style='background-color: #edf8e9'></span>0-500</div>
+          <div><span style='background-color: #c7e9c0'></span>500-1,500</div>
+          <div><span style='background-color: #a1d99b'></span>1,500-3,000</div>
+          <div><span style='background-color: #74c476'></span>3,000-5,000</div>
+          <div><span style='background-color: #31a354'></span>5,000-8,000</div>
+          <div><span style='background-color: #006d2c'></span>8,000+</div>
+        </div>
+      <!-- Radio button selectors for floodplain -->
+        <div class='toggle-container'>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <input type="radio" id='100' checked=true class='layertoggle' aria-label="100 Year Floodplain">100 Year Floodplain</input>
+              </div>
+              <div class="input-group-text">
+                <input type="radio" id=500 class='layertoggle' aria-label="500 Year Floodplain">500 Year Floodplain</input>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>

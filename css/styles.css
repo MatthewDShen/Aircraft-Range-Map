@@ -1,48 +1,142 @@
-html{
-  font-family: 'Montserrat', sans-serif;
-  color: #8614f8
+/* Container for mapboxGL map */
+#mapContainer {
+  backgroundColor: #ccc;
+  flex-grow: 1
 }
 
-
-.centered {
-  text-align: center;
+/* Overall body fonts and display */
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
 }
 
-
-body { 
-  margin: 0; 
-  padding: 0;
-  background-color: #808080 
-}
-#mapContainer { 
-  height: 750px;
-  width: 500px;
-  padding-top: 5px;
-   /* position: absolute; top: 0; bottom: 0; width: 100%;  */
+/* Navbar format */
+.nav {
+  background-color: #343332;
+  color: #fff;
 }
 
-.coordinates {
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    position: absolute;
-    bottom: 40px;
-    left: 10px;
-    padding: 5px 10px;
-    margin: 0;
-    font-size: 11px;
-    line-height: 18px;
-    border-radius: 3px;
-    display: none;
+.nav-link {
+  color: #fff;
 }
 
-.button {
-  background-color: #8614f8;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
+/* Overall content container */
+#parent-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Overall content container */
+.content-area {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+/* Legend format */
+/* Source: https://docs.mapbox.com/mapbox-gl-js/example/updating-choropleth/ */
+.legend {
+  background-color: #BBBBBB;
+  opacity: .85;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: absolute;
+  left: 40px;
+  top: 10px;
+  z-index: 1;
+}
+
+.legend h5 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.legend div span {
+  border-radius: 50%;
   display: inline-block;
-  font-size: 10px;
-  margin: 4px 2px;
-  cursor: pointer;
+  height: 10px;
+  margin-right: 5px;
+  width: 10px;
+}
+
+/* Floodplain toggle buttons */
+.toggle-container{
+  background-color: #BBBBBB;
+  opacity: .85;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: absolute;
+  left: 40px;
+  top: 200px;
+  z-index: 1;
+}
+
+.input-group-text {
+  background-color: #BBBBBB;
+  border-color: #BBBBBB;
+}
+
+/* Popup format */
+.popup h5 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+/* Sidebar format */
+.sidebar {
+  width: 400px;
+  height: 100%;
+  background-color: #2C4653;
+  border-right: 1px solid #5e5e5e;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px;
+}
+
+.sidebar h3 {
+  color: #fff;
+  padding-top: 25px;
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
+/* Text box */
+.info-blurb {
+  color: #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Buttons */
+.button-container {
+  margin-left: 20px;
+}
+
+/* Neighborhood stats table */
+.stat-table-container {
+  width: 400px;
+  height: 200px;
+  padding-top: 25px;
+  position: relative;
+  left: 5%;
+  right: 5%;
+  width: 100%;
+}
+
+#stat-table {
+  align-self: center;
+  background-color: #2C4653;
+  color: #fff;
+  font-size: 15px;
+}
+
+#stat-table th, td {
+  padding: 5px;
+}
