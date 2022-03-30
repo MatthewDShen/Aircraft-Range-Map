@@ -1,18 +1,48 @@
-#mapContainer {
-  height: 750px;
-  width: 750px;
-  padding-top: 5px;
-}
-
 html{
   font-family: 'Montserrat', sans-serif;
   color: #8614f8
 }
 
-body {
-  background-color: #808080
-}
 
 .centered {
   text-align: center;
 }
+
+
+body { 
+  margin: 0; 
+  padding: 0;
+  background-color: #808080 
+}
+#mapContainer { 
+  height: 750px;
+  width: 500px;
+  padding-top: 5px;
+   /* position: absolute; top: 0; bottom: 0; width: 100%;  */
+}
+
+.coordinates {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
+
+.button {
+  background-color: #8614f8;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
