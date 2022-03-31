@@ -3,8 +3,6 @@
 //Create inital variables
 var mapCenter = [-96,37]
 var aircraft_range = 500
-
-
 const bounds = [
   [-130,20],
   [-65,50]
