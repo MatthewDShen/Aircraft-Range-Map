@@ -3,10 +3,6 @@
 //Create inital variables
 var mapCenter = [-96,37]
 var aircraft_range = 0
-const bounds = [
-  [-130,20],
-  [-65,50]
-];
 
 //Setting up Mabox GL & map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3dob25nIiwiYSI6IjAyYzIwYTJjYTVhMzUxZTVkMzdmYTQ2YzBmMTM0ZDAyIn0.owNd_Qa7Sw2neNJbK6zc1A'
@@ -14,8 +10,7 @@ var map = new mapboxgl.Map({
   container: 'mapContainer',
   style: 'mapbox://styles/mapbox/dark-v10',
   center: mapCenter,
-  zoom: 2,
-  maxBounds: bounds
+  zoom: 3.5,
 });
 
 // Get Airport Data & Create Dropdown
@@ -67,7 +62,9 @@ $('#sel').change(function(){
                     "fill-color": "#57068C",
                     "fill-opacity": 0.6
                 }
-            });            
+            });
+            
+            zoomFunc(coords,aircraft_range);
         });
 
         update_marker = 'TRUE'
@@ -89,6 +86,9 @@ $('#sel').change(function(){
         //Sets marker and range circle
         start_marker = setMarkerAndRange(coords,aircraft_range)
 
+        // Fly to marker
+        zoomFunc(coords,aircraft_range);
+
         // Adjusts range cirlce if there is change in requested range
         $('#range').change(function(){
             map.removeLayer('polygon');
@@ -106,7 +106,9 @@ $('#sel').change(function(){
                     "fill-color": "#57068C",
                     "fill-opacity": 0.6
                 }
-            });            
+            });   
+            
+            zoomFunc(coords,aircraft_range);
         });
 
 
@@ -144,22 +146,13 @@ var setMarkerAndRange = function(coords,aircraft_range){
     
 };
 
-//Function to set zoom
-// var zoomFunc = function(coords){
-//     aircraft_range = $('#range').val();
-
-//     var zoomSet = 0;
-//     if(aircraft_range == 0){
-//         zoomSet = 10;
-//     } else{
-//         zoomSet = aircraft_range/100
-//     }
-
-//     map.flyTo({
-//         center: coords,
-//         zoom: zoomSet
-//     });
-// };
+// Function to set zoom
+var zoomFunc = function(coords){
+    map.flyTo({
+        center: coords,
+        zoom: 10
+    });
+};
 
 //Function to create cirlce
 var createGeoJSONCircle = function(center, radiusInKm, points) {
