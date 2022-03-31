@@ -30,8 +30,8 @@ var airport_data = $.getJSON('/data/all-airport-data.json', function(airport_dat
 
 
 $('#sel').change(function(){
-
-    if ($('#sel').val() !== '') {
+    var start_marker = ''
+    if (start_marker == '') {
         var coords = $('#sel').val().split(',').map(Number);
 
         coords = coords.reverse();
@@ -56,7 +56,6 @@ $('#sel').change(function(){
             });
         });
         console.log('new marker')
-        return coords
         
     } else{
         start_marker.remove();
