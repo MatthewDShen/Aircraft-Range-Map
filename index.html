@@ -15,51 +15,32 @@
 </head>
 
 <body>
-  <!-- Main content container -->
-  <div id='parent-container'>
-    <!-- Navbar -->
-    <!-- Source: https://getbootstrap.com/docs/4.0/components/navs/ -->
-    <div class='content-area'>
+  <div id='parent_container'>
+    <div class='content_area'>
       <div class='sidebar'>
-        <div id='sidebar-content-area'>
-          <div class='sidebar-title'>
+        <div id='sidebar_content_area'>
+          <div class='sidebar_title'>
             <h3><strong>Airport Range Finder</strong></h3>
           </div>
-          <div class='stat-table-container'>
-            <div id='stat-table' class='table table-bordered table-hover'>
-              <i>The following program allows you to find the distance that an aircraft can travel based on a starting aircraft and a range. To start select your initial airport and the range of your aircraft!</i>
-            </div>
+          <div class='main_text'>
+            <p>The following program allows you to find the distance that an aircraft can travel based on a starting aircraft and a range. To start select your initial airport and the range of your aircraft!</p>
           </div>
-          <div class='info-blurb'>
+          <div class='main_text'>
             <p>Select your starting airport</p>
         
             <select id="sel">
               <option value="">-- Select --</option>
             </select>
           </div>
-          <div class='info-blurb'>
+          <div class='main_text'>
             <p>Select your aircraft range</p>
             
-            <input type="number" ></input>
+            <input type="number" id="range"></input>
           </div>
       </div>
     </div>
     <div id='mapContainer'>
       <!-- mapboxGL map inserted here-->
-      <!-- Radio button selectors for floodplain -->
-        <div class='toggle-container'>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <input type="radio" id='100' checked=true class='layertoggle' aria-label="100 Year Floodplain">100 Year Floodplain</input>
-              </div>
-              <div class="input-group-text">
-                <input type="radio" id=500 class='layertoggle' aria-label="500 Year Floodplain">500 Year Floodplain</input>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 

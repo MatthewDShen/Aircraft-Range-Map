@@ -2,13 +2,13 @@
 
 //Create inital variables
 var mapCenter = [-96,37]
-var aircraft_range = 500
+var aircraft_range = 0
 const bounds = [
   [-130,20],
   [-65,50]
 ];
 
-//Setting up Mabox GL & map//
+//Setting up Mabox GL & map
 mapboxgl.accessToken = 'pk.eyJ1IjoiY3dob25nIiwiYSI6IjAyYzIwYTJjYTVhMzUxZTVkMzdmYTQ2YzBmMTM0ZDAyIn0.owNd_Qa7Sw2neNJbK6zc1A'
 var map = new mapboxgl.Map({
   container: 'mapContainer',
@@ -18,6 +18,7 @@ var map = new mapboxgl.Map({
   maxBounds: bounds
 });
 
+// Get Airport Data & Create Dropdown
 var airport_data = $.getJSON('/data/all-airport-data.json', function(airport_data){
     for (var i = 0; i < airport_data.length; i++) {
         let latlng = [airport_data[i]['Latitude'],airport_data[i]['Longitude']]
@@ -29,27 +30,64 @@ var airport_data = $.getJSON('/data/all-airport-data.json', function(airport_dat
 
 
 $('#sel').change(function(){
-    var coords = $('#sel').val().split(',').map(Number);
-    coords = coords.reverse();
 
+    if ($('#sel').val() !== '') {
+        var coords = $('#sel').val().split(',').map(Number);
 
+        coords = coords.reverse();
+        const start_marker = new mapboxgl.Marker()
+            .setLngLat(coords)
+            .addTo(map);
 
-    const start_marker = new mapboxgl.Marker()
-        .setLngLat(coords)
-        .addTo(map);
+        $('#range').change(function(){
+            aircraft_range = $('#range').val();
+            
+            map.addSource("polygon", createGeoJSONCircle(coords, aircraft_range));
 
-    map.addSource("polygon", createGeoJSONCircle(coords, aircraft_range));
+            map.addLayer({
+                "id": "polygon",
+                "type": "fill",
+                "source": "polygon",
+                "layout": {},
+                "paint": {
+                    "fill-color": "#57068C",
+                    "fill-opacity": 0.6
+                }
+            });
+        });
+        console.log('new marker')
+        return coords
+        
+    } else{
+        start_marker.remove();
 
-    map.addLayer({
-        "id": "polygon",
-        "type": "fill",
-        "source": "polygon",
-        "layout": {},
-        "paint": {
-            "fill-color": "blue",
-            "fill-opacity": 0.6
-        }
-    });
+        coords = $('#sel').val().split(',').map(Number);
+        coords = coords.reverse();
+
+        
+
+        $('#range').change(function(){
+            aircraft_range = $('#range').val();
+            
+            map.addSource("polygon", createGeoJSONCircle(coords, aircraft_range));
+
+            map.addLayer({
+                "id": "polygon",
+                "type": "fill",
+                "source": "polygon",
+                "layout": {},
+                "paint": {
+                    "fill-color": "#57068C",
+                    "fill-opacity": 0.6
+                }
+            });
+        });
+        
+        console.log('update marker')
+
+    }
+    
+    
 
 });
 
