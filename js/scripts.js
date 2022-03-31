@@ -145,20 +145,21 @@ var setMarkerAndRange = function(coords,aircraft_range){
 };
 
 //Function to set zoom
-var zoomFunc = function(coords,aircraft_range){
-    var zoomSet = 10;
-    if(aircraft_range == 0){
-        zoomSet = 10;
-    } else{
-        zoomSet = aircraft_range/100
-    }
+// var zoomFunc = function(coords){
+//     aircraft_range = $('#range').val();
 
-    map.flyTo({
-        center: coords,
-        zoom: zoomSet
-        
-    });
-};
+//     var zoomSet = 0;
+//     if(aircraft_range == 0){
+//         zoomSet = 10;
+//     } else{
+//         zoomSet = aircraft_range/100
+//     }
+
+//     map.flyTo({
+//         center: coords,
+//         zoom: zoomSet
+//     });
+// };
 
 //Function to create cirlce
 var createGeoJSONCircle = function(center, radiusInKm, points) {
