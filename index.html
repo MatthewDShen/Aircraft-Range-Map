@@ -15,43 +15,19 @@
 </head>
 
 <body>
-  <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Main content container -->
   <div id='parent-container'>
     <!-- Navbar -->
     <!-- Source: https://getbootstrap.com/docs/4.0/components/navs/ -->
-    <nav class="nav">
-      <a class="nav-link active" href="#">Home</a>
-      <a class="nav-link" href="#">Learn More</a>
-    </nav>
-    <!-- Navbar -->
     <div class='content-area'>
       <div class='sidebar'>
         <div id='sidebar-content-area'>
           <div class='sidebar-title'>
-            <h3><strong>Housing Choice Voucher Households and Flood Risk</strong></h3>
+            <h3><strong>Airport Range Finder</strong></h3>
           </div>
           <div class='stat-table-container'>
             <div id='stat-table' class='table table-bordered table-hover'>
-              <i>Select a neighborhood to learn more</i>
+              <i>The following program allows you to find the distance that an aircraft can travel based on a starting aircraft and a range. To start select your initial airport and the range of your aircraft!</i>
             </div>
           </div>
           <div class='info-blurb'>
@@ -66,25 +42,10 @@
             
             <input type="number" ></input>
           </div>
-          <div class="button-container">
-            <button type="button" class="btn btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal">
-              About this data
-            </button>
-          </div>
       </div>
     </div>
     <div id='mapContainer'>
       <!-- mapboxGL map inserted here-->
-        <div id='number-reported-legend' class='legend'>
-          <!-- Source: https://docs.mapbox.com/mapbox-gl-js/example/updating-choropleth/ -->
-          <h5>Number of Voucher Households (Reported)</h5>
-          <div><span style='background-color: #edf8e9'></span>0-500</div>
-          <div><span style='background-color: #c7e9c0'></span>500-1,500</div>
-          <div><span style='background-color: #a1d99b'></span>1,500-3,000</div>
-          <div><span style='background-color: #74c476'></span>3,000-5,000</div>
-          <div><span style='background-color: #31a354'></span>5,000-8,000</div>
-          <div><span style='background-color: #006d2c'></span>8,000+</div>
-        </div>
       <!-- Radio button selectors for floodplain -->
         <div class='toggle-container'>
           <div class="input-group">
