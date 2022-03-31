@@ -1,14 +1,15 @@
 /* Container for mapboxGL map */
 #mapContainer {
-  backgroundColor: #ccc;
+  backgroundColor: #5e5e5e;
   flex-grow: 1
 }
 
-/* Overall body fonts and display */
+/* body and html font */
 html, body {
   margin: 0;
   height: 100%;
   font-family: 'Montserrat', sans-serif;
+  color: #fff;
 }
 
 /* Overall content container */
@@ -38,7 +39,6 @@ html, body {
 }
 
 .sidebar h3 {
-  color: #fff;
   padding-top: 25px;
   padding-left: 15px;
   padding-right: 10px;
@@ -46,7 +46,6 @@ html, body {
 
 /* Text box */
 .main_text {
-  color: #fff;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 20px;

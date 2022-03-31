@@ -28,14 +28,29 @@ var airport_data = $.getJSON('/data/all-airport-data.json', function(airport_dat
     return airport_data
 });
 
-var update_marker = 'FALSE'
+
+// Add/Change Marker & Range based on input
+
+// Setup for logical statement to see if first marker
+var update_marker = 'FALSE' 
+
+// Looks for changes in dropdown bar
 $('#sel').change(function(){
+    // If this is the first marker being placed
     if (update_marker == 'FALSE') {
         
+        // Gets coordinates of first marker
         var coords = $('#sel').val().split(',').map(Number);
         coords = coords.reverse();
+
+        // Places marker down and range cirlce
         start_marker = setMarkerAndRange(coords,aircraft_range)
 
+
+        // Fly to marker
+        zoomFunc(coords,aircraft_range);
+
+        // Adjusts range cirlce if there is change in requested range
         $('#range').change(function(){
             map.removeLayer('polygon');
             map.removeSource('polygon');
@@ -58,15 +73,23 @@ $('#sel').change(function(){
         update_marker = 'TRUE'
         return start_marker
         
-    } else{
+    } 
+    // When you are updating the marker
+    else{
+
+        // Removes initial marker and range map
         start_marker.remove();
         map.removeLayer('polygon');
         map.removeSource('polygon');
 
+        //Gets coordinates of new airport
         coords = $('#sel').val().split(',').map(Number);
         coords = coords.reverse();
+
+        //Sets marker and range circle
         start_marker = setMarkerAndRange(coords,aircraft_range)
 
+        // Adjusts range cirlce if there is change in requested range
         $('#range').change(function(){
             map.removeLayer('polygon');
             map.removeSource('polygon');
@@ -92,7 +115,8 @@ $('#sel').change(function(){
     }
 })
 
-var setMarkerAndRange = function(coords){
+//Function to set marker for airport and range cirlce
+var setMarkerAndRange = function(coords,aircraft_range){
     
     const start_marker = new mapboxgl.Marker()
         .setLngLat(coords)
@@ -115,12 +139,28 @@ var setMarkerAndRange = function(coords){
         }
     });
 
-
     return start_marker
 
     
 };
 
+//Function to set zoom
+var zoomFunc = function(coords,aircraft_range){
+    var zoomSet = 10;
+    if(aircraft_range == 0){
+        zoomSet = 10;
+    } else{
+        zoomSet = aircraft_range/100
+    }
+
+    map.flyTo({
+        center: coords,
+        zoom: zoomSet
+        
+    });
+};
+
+//Function to create cirlce
 var createGeoJSONCircle = function(center, radiusInKm, points) {
     if(!points) points = 64;
 
