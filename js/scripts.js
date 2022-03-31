@@ -28,44 +28,21 @@ var airport_data = $.getJSON('/data/all-airport-data.json', function(airport_dat
     return airport_data
 });
 
-
+var update_marker = 'FALSE'
 $('#sel').change(function(){
-    var start_marker = ''
-    if (start_marker == '') {
-
+    if (update_marker == 'FALSE') {
+        
         var coords = $('#sel').val().split(',').map(Number);
-        setMarkerAndRange(coords,aircraft_range)
-        console.log('new marker')
-
-        return start_marker
-        
-    } else{
-        start_marker.remove();
-
-        coords = $('#sel').val().split(',').map(Number);
         coords = coords.reverse();
-
-        setMarkerAndRange(coords,aircraft_range)
-        
-        console.log('update marker')
-
-    }
-    
-    
-
-})
-
-var setMarkerAndRange = function(coords,aircraft_range,){
-    coords = coords.reverse();
-        const start_marker = new mapboxgl.Marker()
-            .setLngLat(coords)
-            .addTo(map);
+        start_marker = setMarkerAndRange(coords,aircraft_range)
 
         $('#range').change(function(){
+            map.removeLayer('polygon');
+            map.removeSource('polygon');
             aircraft_range = $('#range').val();
-            
-            map.addSource("polygon", createGeoJSONCircle(coords, aircraft_range));
-
+    
+            map.addSource("polygon", createGeoJSONCircle(coords,aircraft_range));
+        
             map.addLayer({
                 "id": "polygon",
                 "type": "fill",
@@ -75,9 +52,74 @@ var setMarkerAndRange = function(coords,aircraft_range,){
                     "fill-color": "#57068C",
                     "fill-opacity": 0.6
                 }
-            });
+            });            
         });
-}
+
+        update_marker = 'TRUE'
+        return start_marker
+        
+    } else{
+        start_marker.remove();
+        map.removeLayer('polygon');
+        map.removeSource('polygon');
+
+        coords = $('#sel').val().split(',').map(Number);
+        coords = coords.reverse();
+        start_marker = setMarkerAndRange(coords,aircraft_range)
+
+        $('#range').change(function(){
+            map.removeLayer('polygon');
+            map.removeSource('polygon');
+            aircraft_range = $('#range').val();
+    
+            map.addSource("polygon", createGeoJSONCircle(coords,aircraft_range));
+        
+            map.addLayer({
+                "id": "polygon",
+                "type": "fill",
+                "source": "polygon",
+                "layout": {},
+                "paint": {
+                    "fill-color": "#57068C",
+                    "fill-opacity": 0.6
+                }
+            });            
+        });
+
+
+        return start_marker
+        
+    }
+})
+
+var setMarkerAndRange = function(coords){
+    
+    const start_marker = new mapboxgl.Marker()
+        .setLngLat(coords)
+        .addTo(map);
+
+
+
+    aircraft_range = $('#range').val();
+    
+    map.addSource("polygon", createGeoJSONCircle(coords,aircraft_range));
+
+    map.addLayer({
+        "id": "polygon",
+        "type": "fill",
+        "source": "polygon",
+        "layout": {},
+        "paint": {
+            "fill-color": "#57068C",
+            "fill-opacity": 0.6
+        }
+    });
+
+
+    return start_marker
+
+    
+};
 
 var createGeoJSONCircle = function(center, radiusInKm, points) {
     if(!points) points = 64;
